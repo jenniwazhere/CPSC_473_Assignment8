@@ -8,7 +8,6 @@
         if (!selector) {
             throw new Error('No selector provided');
         }
-
         this.$formElement = $(selector);
         if (this.$formElement.length === 0) {
             throw new Error('Could not find element with selector: ' + selector);
@@ -31,7 +30,6 @@
                     this.reset();
                     this.elements[0].focus();
                 }.bind(this));
-
         });
     };
 
@@ -61,7 +59,6 @@
                 event.target.setCustomValidity(message);
             }
         });
-
     };
 
     FormHandler.prototype.addOrderInputHandler = function(fn, remoteDS) {
@@ -78,7 +75,6 @@
                 });
         });
     };
-
 
     App.FormHandler = FormHandler;
     window.App = App;

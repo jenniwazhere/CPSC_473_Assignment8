@@ -30,6 +30,7 @@
             });
         }
     };
+    
     App.Validation = Validation;
     App.validEmail = validEmail;
     window.App = App;

@@ -59,5 +59,4 @@ QUnit.test('truck', function(assert) {
             'emailAddress': 'me@goldfinger.com'
         }
     });
-
 });

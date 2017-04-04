@@ -1,12 +1,10 @@
 (function(window) {
     'use strict';
     var App = window.App || {};
-
     function Truck(truckId, db) {
         this.truckId = truckId;
         this.db = db;
     }
-
 
     Truck.prototype.createOrder = function(order) {
         console.log('Adding order for ' + order.emailAddress);
@@ -32,12 +30,9 @@
             }.bind(this));
     };
 
-    //Additional function to return all of the objects (used for QUnit testing)
     Truck.prototype.getAllTruck = function() {
         var customerArray = Object(this.db.getAll());
         return customerArray;
-
-
     };
 
     App.Truck = Truck;

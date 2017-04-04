@@ -21,8 +21,7 @@
         return myTruck.createOrder.call(myTruck, data)
             .then(function() {
                 checkList.addRow.call(checkList, data);
-            });
-
+            });s
     });
 
     formHandler.addInputHandler(Validation.isCompanyEmail);

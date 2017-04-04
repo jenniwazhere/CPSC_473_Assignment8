@@ -1,37 +1,45 @@
-(function (window) {
-  'use strict';
-  var App = window.App || {};
+(function(window) {
+    'use strict';
+    var App = window.App || {};
 
-  function Truck(truckId, db) {
-    this.truckId = truckId;
-    this.db = db;
-  }
+    function Truck(truckId, db) {
+        this.truckId = truckId;
+        this.db = db;
+    }
 
-  Truck.prototype.createOrder = function (order) {
-    console.log('Adding order for ' + order.emailAddress);
-    return this.db.add(order.emailAddress, order);
-  };
 
-  Truck.prototype.deliverOrder = function (customerId) {
-    console.log('Delivering order for ' + customerId);
-    return this.db.remove(customerId);
-  };
+    Truck.prototype.createOrder = function(order) {
+        console.log('Adding order for ' + order.emailAddress);
+        return this.db.add(order.emailAddress, order);
+    };
 
-  Truck.prototype.printOrders = function (printFn) {
-    return this.db.getAll()
-      .then(function (orders) {
-        var customerIdArray = Object.keys(orders);
+    Truck.prototype.deliverOrder = function(customerId) {
+        console.log('Delivering order for ' + customerId);
+        return this.db.remove(customerId);
+    };
 
-        console.log('Truck #' + this.truckId + ' has pending orders:');
-        customerIdArray.forEach(function (id) {
-          console.log(orders[id]);
-          if (printFn) {
-            printFn(orders[id]);
-          }
-        }.bind(this));
-      }.bind(this));
-  };
+    Truck.prototype.printOrders = function(printFn) {
+        return this.db.getAll()
+            .then(function(orders) {
+                var customerIdArray = Object.keys(orders);
+                console.log('Truck #' + this.truckId + ' has pending orders:');
+                customerIdArray.forEach(function(id) {
+                    console.log(orders[id]);
+                    if (printFn) {
+                        printFn(orders[id]);
+                    }
+                }.bind(this));
+            }.bind(this));
+    };
 
-  App.Truck = Truck;
-  window.App = App;
+    //Additional function to return all of the objects (used for QUnit testing)
+    Truck.prototype.getAllTruck = function() {
+        var customerArray = Object(this.db.getAll());
+        return customerArray;
+
+
+    };
+
+    App.Truck = Truck;
+    window.App = App;
 })(window);
